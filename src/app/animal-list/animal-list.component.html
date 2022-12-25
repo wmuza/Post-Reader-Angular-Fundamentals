@@ -1,0 +1,8 @@
+<!-- Rendering the animal items in the child component -->
+<h1 [ngStyle]="{'font-size': '48px'}">Zoo Animals</h1>
+<!-- <p class="text-md font-medium title-font text-gray-900 mb-10">Order By: {{orderby}}</p> -->
+
+<!-- input property binding -->
+<app-animal-list-item *ngFor="let animal of animalList" [animal]="animal" (hideAnimals)="hideAnimal(animal)" (marked)="markAsFavorite(animal)"></app-animal-list-item>
+<br><br><br>
+<button (click)="goToPosts()">Go To posts with animals route parameters</button>

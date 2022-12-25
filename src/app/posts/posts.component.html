@@ -1,0 +1,50 @@
+<div class="flex mb-3">
+  <h1 class="pl-4 text-3xl font-bold underline flex-1">{{ title }}</h1>
+  <button class="mr-10 flex-none h-10 px-6 font-semibold rounded-md bg-black text-white" (click)="showHidePanel()">Create Post</button>
+</div>
+<!-- <button (click)="goToAnimals()">Go To animals</button> -->
+
+<section class="text-gray-600 body-font">
+  <div class="container pr-5 py-24 mx-auto">
+    <div class="grid grid-cols-3">
+      <app-post-item *ngFor="let post of posts" [post]="post" (hidePost)="hidePost($event)"></app-post-item>
+    </div>
+  </div>
+</section>
+
+
+<div *ngIf="panel" class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+  <div class="fixed inset-0 overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+        <div class="pointer-events-auto relative w-screen max-w-md">
+          <div class="absolute top-0 left-0 -ml-8 flex pt-4 pr-2 sm:-ml-10 sm:pr-4">
+            <button type="button" (click)="showHidePanel()" class="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+              <span class="sr-only">Close panel</span>
+              <!-- Heroicon name: outline/x-mark -->
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+            <div class="px-4 sm:px-6">
+              <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Create Post Section</h2>
+            </div>
+            <div class="relative mt-6 flex-1 px-4 sm:px-6">
+              <!-- Replace with your content -->
+              <div class="absolute inset-0 px-4 sm:px-6">
+                <app-create-post (addPost)="addPost($event)"></app-create-post>
+              </div>
+              <!-- /End replace -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
